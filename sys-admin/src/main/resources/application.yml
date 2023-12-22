@@ -1,0 +1,56 @@
+#开发环境配置
+server:
+  #端口
+  port: 8081
+  tomcat:
+    uri-encoding: utf-8
+#日志配置
+logging:
+  level:
+    com.yj.oa.project.mapper: debug
+#数据源
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/activiti_demo?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+    username: root
+    password: 1qaz2wsx
+#    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+
+  activiti:
+    database-schema-update: true
+    check-process-definitions: true
+    process-definition-location-prefix: classpath:/processes/
+    history-level: full
+
+
+jwt:
+  header: token   #http请求头所需要的字段
+  secret: mySecret        #jwt秘钥
+  expiration: 86400      #30min 单位:秒
+  authPath: user/login         #认证请求的路径
+  ignoreUrl:
+    - /api/user/login
+    - /swagger-ui.html
+    - /swagger-ui/**
+    - /webjars/**
+    - /v3/**
+    - /swagger-resources/**
+
+# MyBatis
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.yj.oa.project.po
+  configuration:
+    map-underscore-to-camel-case: true
+
+## Swagger配置
+#swagger:
+#  # 是否开启swagger
+#  enabled: true
+
+
+
